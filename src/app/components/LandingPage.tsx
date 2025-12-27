@@ -10,16 +10,19 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Brain className="w-8 h-8 text-purple-600" />
-            <span className="font-semibold text-xl">AMEP</span>
+            <span className="font-semibold text-xl">PersonalGuruji</span>
           </div>
           <nav className="hidden md:flex gap-6">
             <a href="#features" className="text-gray-600 hover:text-purple-600 transition">Features</a>
             <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition">How It Works</a>
             <a href="#pricing" className="text-gray-600 hover:text-purple-600 transition">Pricing</a>
           </nav>
-          <Button variant="outline" onClick={() => onNavigate('student-dashboard', 'student')}>Sign In</Button>
+          <div className="flex gap-3">
+            <Button className="bg-gradient-to-r from-purple-600 to-blue-600" onClick={() => onNavigate('signup')}>Get Started</Button>
+          </div>
         </div>
       </header>
+
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 md:py-32">
@@ -37,13 +40,7 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
             <p className="text-xl text-gray-600">
               Experience intelligent, adaptive learning powered by AI. Master any subject at your own pace with personalized pathways and real-time feedback.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700" onClick={() => onNavigate('student-dashboard', 'student')}>
-                Get Started
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => onNavigate('teacher-dashboard', 'teacher')}>
-                Join as Teacher
-              </Button>
+            <div className="flex flex-wrap gap-4">              
             </div>
             <div className="flex gap-8 pt-4">
               <div>
@@ -63,7 +60,7 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-3xl blur-3xl opacity-20"></div>
             <img 
-              src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMGxlYXJuaW5nJTIwZWR1Y2F0aW9ufGVufDF8fHx8MTc2NjczODAwOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMGxlYXJuaW5nJTIwZWR1Y2F0aW9ufGVufDF8fHx8MTc"
               alt="AI-driven learning illustration"
               className="relative rounded-3xl shadow-2xl"
             />
@@ -147,7 +144,7 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
       <section id="how-it-works" className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">How AMEP Works</h2>
+            <h2 className="text-4xl font-bold mb-4">How PersonalGuruji Works</h2>
             <p className="text-xl text-gray-600">Simple, effective, and adaptive learning in three steps</p>
           </div>
 
@@ -179,17 +176,88 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
         </div>
       </section>
 
+{/* Pricing Section */}
+<section id="pricing" className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+      <p className="text-xl text-gray-600">
+        Choose a plan that fits your learning goals
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      
+      {/* Free Plan */}
+      <Card className="p-8 text-center border hover:shadow-lg transition">
+        <h3 className="text-2xl font-semibold mb-2">Free</h3>
+        <p className="text-gray-600 mb-6">Perfect to get started</p>
+        <div className="text-4xl font-bold mb-6">₹0</div>
+        <ul className="space-y-3 text-gray-600 mb-8">
+          <li>✔ Limited courses</li>
+          <li>✔ Basic assessments</li>
+          <li>✔ AI recommendations</li>
+          <li>✖ Advanced analytics</li>
+        </ul>
+        <Button className="w-full" variant="outline" onClick={() => onNavigate('signup')}>
+          Get Started
+        </Button>
+      </Card>
+
+      {/* Pro Plan (Highlighted) */}
+      <Card className="p-8 text-center border-2 border-purple-600 shadow-xl scale-105">
+        <div className="inline-block px-3 py-1 mb-4 text-sm bg-purple-100 text-purple-700 rounded-full">
+          Most Popular
+        </div>
+        <h3 className="text-2xl font-semibold mb-2">Pro</h3>
+        <p className="text-gray-600 mb-6">Best for serious learners</p>
+        <div className="text-4xl font-bold mb-6">
+          ₹499<span className="text-lg text-gray-600">/month</span>
+        </div>
+        <ul className="space-y-3 text-gray-600 mb-8">
+          <li>✔ Unlimited courses</li>
+          <li>✔ Adaptive learning paths</li>
+          <li>✔ Smart analytics</li>
+          <li>✔ Gamification & rewards</li>
+        </ul>
+        <Button
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600"
+          onClick={() => onNavigate('signup')}
+        >
+          Start Pro Trial
+        </Button>
+      </Card>
+
+      {/* Educator Plan */}
+      <Card className="p-8 text-center border hover:shadow-lg transition">
+        <h3 className="text-2xl font-semibold mb-2">Educator</h3>
+        <p className="text-gray-600 mb-6">For teachers & institutions</p>
+        <div className="text-4xl font-bold mb-6">
+          ₹999<span className="text-lg text-gray-600">/month</span>
+        </div>
+        <ul className="space-y-3 text-gray-600 mb-8">
+          <li>✔ Teacher dashboard</li>
+          <li>✔ Student progress tracking</li>
+          <li>✔ Custom course creation</li>
+          <li>✔ Priority support</li>
+        </ul>
+        <Button className="w-full" variant="outline" onClick={() => onNavigate('signup', 'teacher')}>
+          For Educators
+        </Button>
+      </Card>
+
+    </div>
+  </div>
+</section>
+
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Learning?</h2>
-          <p className="text-xl mb-8 opacity-90">Join thousands of students already mastering their subjects with AMEP</p>
+          <p className="text-xl mb-8 opacity-90">Join thousands of students already mastering their subjects with PersonalGuruji</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" variant="secondary" onClick={() => onNavigate('student-dashboard', 'student')}>
+            <Button size="lg" variant="secondary" onClick={() => onNavigate('signup')}>
               Start Learning Free
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-purple-600" onClick={() => onNavigate('teacher-dashboard', 'teacher')}>
-              Explore for Teachers
             </Button>
           </div>
         </div>
@@ -202,7 +270,7 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Brain className="w-6 h-6 text-purple-400" />
-                <span className="font-semibold text-white">AMEP</span>
+                <span className="font-semibold text-white">PersonalGuruji</span>
               </div>
               <p className="text-sm">Adaptive Mastery & Engagement Platform - Making learning personal and effective.</p>
             </div>
@@ -232,7 +300,7 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: string, role?: 
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-            © 2025 AMEP. All rights reserved.
+            © 2025 PersonalGuruji. All rights reserved.
           </div>
         </div>
       </footer>

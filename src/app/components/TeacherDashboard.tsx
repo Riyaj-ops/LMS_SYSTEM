@@ -2,32 +2,30 @@ import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { 
-  ArrowLeft,
+  LayoutDashboard,
   Users,
-  TrendingUp,
-  AlertTriangle,
   BookOpen,
+  TrendingUp,
+  Settings,
+  Bell,
+  Search,
+  ChevronRight,
+  AlertCircle,
+  CheckCircle,
   Clock,
   Award,
-  Target
+  BarChart3,
+  ArrowLeft
 } from "lucide-react";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
-  ResponsiveContainer,
-  Cell
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 interface TeacherDashboardProps {
   onNavigate: (page: string) => void;
+  teacherName?: string;
+  onShowNotifications?: () => void;
 }
 
-export function TeacherDashboard({ onNavigate }: TeacherDashboardProps) {
+export function TeacherDashboard({ onNavigate, teacherName = "Dr. Smith", onShowNotifications }: TeacherDashboardProps) {
   const classes = [
     { id: 1, name: "Math 101 - Section A", students: 28, avgProgress: 72, color: "purple" },
     { id: 2, name: "Math 101 - Section B", students: 32, avgProgress: 68, color: "blue" },
@@ -115,7 +113,7 @@ export function TeacherDashboard({ onNavigate }: TeacherDashboardProps) {
           <Card className="p-6 border-l-4 border-l-orange-500">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-600">Needs Attention</span>
-              <AlertTriangle className="w-5 h-5 text-orange-600" />
+              <AlertCircle className="w-5 h-5 text-orange-600" />
             </div>
             <div className="text-3xl font-bold text-orange-600">3</div>
             <div className="text-sm text-gray-500 mt-1">Students struggling</div>
@@ -215,7 +213,7 @@ export function TeacherDashboard({ onNavigate }: TeacherDashboardProps) {
                     ))}
                   </div>
                   <Button size="sm" variant="outline" className="w-full">
-                    <AlertTriangle className="w-4 h-4 mr-2" />
+                    <AlertCircle className="w-4 h-4 mr-2" />
                     Provide Support
                   </Button>
                 </div>

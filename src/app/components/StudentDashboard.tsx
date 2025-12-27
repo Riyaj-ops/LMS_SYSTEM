@@ -14,15 +14,18 @@ import {
   Award,
   ChevronRight,
   Star,
-  Zap
+  Zap,
+  Bell,
+  Settings
 } from "lucide-react";
 
 interface StudentDashboardProps {
   onNavigate: (page: string) => void;
   studentName?: string;
+  onShowNotifications?: () => void;
 }
 
-export function StudentDashboard({ onNavigate, studentName = "Alex" }: StudentDashboardProps) {
+export function StudentDashboard({ onNavigate, studentName = "Alex", onShowNotifications }: StudentDashboardProps) {
   const courses = [
     { 
       id: 1, 
@@ -97,7 +100,10 @@ export function StudentDashboard({ onNavigate, studentName = "Alex" }: StudentDa
           Dashboard
         </button>
         
-        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700 transition">
+        <button 
+          onClick={() => onNavigate('courses')}
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700 transition"
+        >
           <BookOpen className="w-5 h-5" />
           Courses
         </button>
@@ -139,6 +145,31 @@ export function StudentDashboard({ onNavigate, studentName = "Alex" }: StudentDa
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-auto">
+        {/* Top Navigation Bar */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="md:hidden">
+            <h2 className="text-xl font-bold">Dashboard</h2>
+          </div>
+          <div className="ml-auto flex items-center gap-3">
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={onShowNotifications}
+              className="relative"
+            >
+              <Bell className="w-5 h-5" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => onNavigate('settings')}
+            >
+              <Settings className="w-5 h-5" />
+            </Button>
+          </div>
+        </div>
+
         {/* Welcome Banner */}
         <div className="mb-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-8 text-white">
           <div className="flex justify-between items-start">
@@ -219,7 +250,11 @@ export function StudentDashboard({ onNavigate, studentName = "Alex" }: StudentDa
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {courses.map((course) => (
-              <Card key={course.id} className="p-6 hover:shadow-lg transition cursor-pointer">
+              <Card 
+                key={course.id} 
+                className="p-6 hover:shadow-lg transition cursor-pointer"
+                onClick={() => onNavigate('course-detail')}
+              >
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="font-semibold text-lg mb-1">{course.name}</h3>
@@ -237,7 +272,15 @@ export function StudentDashboard({ onNavigate, studentName = "Alex" }: StudentDa
                     <Clock className="w-4 h-4" />
                     {course.timeSpent}
                   </div>
-                  <Button size="sm" variant="ghost" className="text-purple-600">
+                  <Button 
+                    size="sm" 
+                    variant="ghost" 
+                    className="text-purple-600"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onNavigate('courses');
+                    }}
+                  >
                     Continue
                   </Button>
                 </div>
